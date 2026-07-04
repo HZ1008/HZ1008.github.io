@@ -1,0 +1,162 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{primary}{RGB}{0, 102, 204}
+\definecolor{secondary}{RGB}{64, 64, 64}
+\definecolor{text}{RGB}{51, 51, 51}
+\linespread{1.02}
+\pagestyle{empty}
+
+\titleformat{\section}
+{\color{primary}\large\bfseries\scshape\raggedright}
+{}{0em}{}[\color{primary}\titlerule]
+\titlespacing*{\section}{0pt}{7pt}{4pt}
+
+% ==================== 自定义命令 ====================
+
+\newcommand{\resumeSubHeadingListStart}{
+    \begin{itemize}[leftmargin=0.11in, itemsep=1.9pt, parsep=0pt, topsep=1.8pt, partopsep=0pt]
+}
+\newcommand{\resumeSubHeadingListEnd}{
+    \end{itemize}\vspace{-1pt}
+}
+
+\newcommand{\resumeItemListStart}{
+    \begin{itemize}[leftmargin=0.22in, label=$\circ$, itemsep=1.7pt, parsep=0pt, topsep=1.8pt, partopsep=0pt]
+}
+\newcommand{\resumeItemListEnd}{
+    \end{itemize}\vspace{0pt}
+}
+
+\newcommand{\resumeSubheading}[4]{
+    \vspace{0pt}\item
+    \begin{tabular*}{0.95\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & #2 \\
+        \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-2pt}
+}
+
+\newcommand{\resumeItem}[1]{
+    \item\small{#1 \vspace{-0.2pt}}
+}
+
+% ============================================================
+
+\begin{document}
+\enlargethispage{0.35in}
+
+%----------HEADER----------
+\begin{center}
+    {\Large\bfseries\color{primary} Zhi Hong}
+    \vspace{0pt}
+
+    \href{mailto:automathhz@gmail.com}{automathhz@gmail.com} \quad
+    \href{https://scholar.google.com/citations?user=tqIJPgwAAAAJ}{Google Scholar} \quad
+    \href{https://github.com/HZ1008}{GitHub}
+\end{center}
+
+\vspace{-12pt}
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+    \resumeSubheading
+      {South China University of Technology (SCUT)}{Guangzhou, China}
+      {Dual-Degree: B.Eng. in Automation \textup{\&} B.Sc. in Mathematics}{Sep 2022 -- Jul 2026}
+      \vspace{1pt}
+      \resumeItemListStart
+        \resumeItem{\textbf{GPA:} 3.84/4.0 \quad \textbf{Rank:} 3/24}
+        \resumeItem{\textbf{Majors:} Control Science \& Engineering + Mathematics and Applied Mathematics}
+        \resumeItem{\textbf{Relevant Coursework:} Mathematical Analysis, Advanced Algebra, Probability Theory, Statistics, Automatic Control, Machine Learning, Deep Learning, Reinforcement Learning}
+      \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------RESEARCH INTERESTS-----------
+\section{Research Interests}
+\resumeSubHeadingListStart
+    \resumeItem{\textbf{Large Language Models:} Embodied Agents, Multi-Agent Systems, Prompt Optimization}
+    \resumeItem{\textbf{Machine Learning:} Bandits, Reinforcement Learning, Federated Learning}
+\resumeSubHeadingListEnd
+
+%-----------PUBLICATIONS-----------
+\section{Publications}
+\resumeSubHeadingListStart
+
+    \item \small{\textbf{MASPOB: Bandit-Based Prompt Optimization for Multi-Agent Systems with Graph Neural Networks} \\
+    \textbf{Zhi Hong}$^{*}$, Qian Zhang$^{*}$, Jiahang Sun, Zhiwei Shang, Mingze Kong, Xiangyi Wang, Yao Shu$^{\dagger}$, Zhongxiang Dai$^{\dagger}$ \\
+    \href{https://icml.cc/virtual/2026/papers.html?search=maspob}{\textit{ICML 2026}} \textbf{(\textcolor{red}{Spotlight, Top 2.2\% of 23,918 submissions})}}
+
+\resumeSubHeadingListEnd
+
+%-----------PREPRINTS & UNDER REVIEW-----------
+\section{Preprints \& Under Review}
+\vspace{0pt}
+\begin{itemize}[leftmargin=0.11in, itemsep=2.2pt, parsep=0.3pt, topsep=1.2pt, partopsep=0pt]
+
+    \item \small{\textbf{AgentSpec: A Modular Specification Framework for Controlled Analysis of Embodied Agents} \\
+    Jixuan Chen, Jianzhi Shen, Haoqiang Kang, \textbf{Zhi Hong}, Qingyi Jiang, Soham Bose, Yiming Zhang, Leon Leng, Amit Vyas, Lingjun Mao, Siru Ouyang, Kun Zhou, Lianhui Qin $\cdot$ Submitted to \textit{NeurIPS 2026}}
+
+    \item \small{\textbf{FedPOB: Sample-Efficient Federated Prompt Optimization via Bandits} \\
+    Pingchen Lu$^{*}$, \textbf{Zhi Hong}$^{*}$, Zhiwei Shang, Zhiyong Wang, Yikun Ban, Yao Shu, Min Zhang, Shuang Qiu, Zhongxiang Dai$^{\dagger}$ \\ \href{https://arxiv.org/abs/2509.24701}{arXiv:2509.24701}}
+
+    \item \small{\textbf{Workflow-R1: Group Sub-sequence Policy Optimization for Multi-turn Workflow Construction} \\
+    Mingze Kong, Zikun Qu, Zhongquan Zhou, Pengyu Liang, Xiang Li, Zhiwei Shang, \textbf{Zhi Hong}, Kaiyu Huang, Zhiyong Wang, Zhongxiang Dai$^{\dagger}$ $\cdot$ \href{https://arxiv.org/abs/2602.01202}{arXiv:2602.01202}}
+
+    \item \small{\textbf{Linear and Neural Dueling Bandits with Delayed Feedback} \\
+    Xiangyi Wang, Pingchen Lu, Jie Mao, Mingze Kong, \textbf{Zhi Hong}, Zhiyong Wang, Zhongxiang Dai $\cdot$ \href{https://arxiv.org/abs/2605.26554}{arXiv:2605.26554}}
+
+
+
+\end{itemize}\vspace{-1pt}
+
+%-----------RESEARCH EXPERIENCE-----------
+\section{Research Experience}
+\resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Research Intern -- Embodied Agents}{Jan 2026 -- Present}
+      {Advisor: \href{https://lianhui.ucsd.edu/}{Prof. Lianhui Qin}, Computer Science and Engineering, UC San Diego}{}
+      \resumeItemListStart
+        \resumeItem{Conducted research on modular architectures to enhance capabilities of embodied LLM-based agents}
+        \resumeItem{Developed a specification framework for composing reusable policy components in embodied agents}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Research Assistant -- Large Language Models}{Sep 2024 -- Present}
+      {Advisor: \href{https://daizhongxiang.github.io/}{Prof. Zhongxiang Dai}, School of Data Science, CUHK-Shenzhen}{}
+      \resumeItemListStart
+        \resumeItem{Conducted research on multi-agent systems to enhance intelligence in large language models}
+        \resumeItem{Developed collaborative frameworks for multi-user multi-agent coordination}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Research Assistant -- Reinforcement Learning}{Feb 2024 -- Jul 2024}
+      {Advisor: \href{https://ieeexplore.ieee.org/author/37538515500}{Prof. Weijie Sun}, School of Automation, SCUT}{}
+      \resumeItemListStart
+        \resumeItem{Conducted research on reinforcement learning integrated with optimal control theory}
+      \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------HONORS & AWARDS-----------
+\section{Honors \& Awards}
+\resumeSubHeadingListStart
+    \resumeItem{\textbf{First Prize} -- China Mathematics Competition (CMC, Category A, Province Level) \hfill \textit{2024}}
+    \resumeItem{\textbf{National Encouragement Scholarship} -- Ministry of Education, China \hfill \textit{2023 -- 2025}}
+    \resumeItem{\textbf{Merit Student} -- South China University of Technology \hfill \textit{2023 -- 2025}}
+\resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Skills \& Interests}
+\resumeSubHeadingListStart
+    \resumeItem{\textbf{Languages:} English (TOEFL MyBest 101), Chinese (Native) \quad \textbf{Programming:} Python, LaTeX, C++, MATLAB}
+    \resumeItem{\textbf{Research Skills:} Reinforcement Learning, Deep Learning, Federated Learning, Bandit Algorithms}
+    \resumeItem{\textbf{Interests:} Traveling, Basketball, Swimming}
+\resumeSubHeadingListEnd
+
+\end{document}
