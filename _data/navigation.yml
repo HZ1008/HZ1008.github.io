@@ -1,10 +1,16 @@
 # main links links
 main:
+  - title: "Homepage"
+    url: "/"
+
   - title: "About Me"
     url: "/#about-me"
 
   - title: "Educations"
     url: "/#-educations"
+
+  - title: "Experiences"
+    url: "/#-research-experience"
 
   - title: "News"
     url: "/#-news"
@@ -12,10 +18,7 @@ main:
   - title: "Publications"
     url: "/#-publications"
 
-  - title: "Research Experience"
-    url: "/#-research-experience"
-
-  - title: "Honors and Awards"
+  - title: "Awards"
     url: "/#-honors-and-awards"
 
   - title: "Talks"
