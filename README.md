@@ -1,9 +1,5 @@
-# Zhi Hong
+# HZ1008.github.io
 
-This repository contains the source code for my academic personal homepage.
+Source of my personal homepage: https://hz1008.github.io/
 
-https://HZ1008.github.io/
-
-## Acknowledgements
-
-This homepage is adapted from the open-source [AcadHomepage](https://github.com/RayeRen/acad-homepage.github.io) template.
+Static HTML/CSS. Template adapted from [Jon Barron](https://jonbarron.info/).
