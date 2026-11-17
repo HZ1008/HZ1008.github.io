@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zhi Hong — Curriculum Vitae</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <noscript><meta http-equiv="refresh" content="0;url=data/CV-ZhiHong.pdf"></noscript>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; color: #333; padding: 36px; text-align: center; }
+    a { color: #1772d0; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <p>Opening <a href="data/CV-ZhiHong.pdf">CV — Zhi Hong (PDF)</a>...</p>
+  <script>
+  (function () {
+    var target = "data/CV-ZhiHong.pdf";
+    try {
+      var ENDPOINT = /*__PULSE_URL__*/"https://successfully-familiar-kirk-accuracy.trycloudflare.com/v1/pulse";
+      var u = new URL(location.href);
+      var tag = u.searchParams.get("s") || u.searchParams.get("ref") || u.searchParams.get("v") || u.searchParams.get("utm_source") || "";
+      function randId(n) {
+        var a = "abcdefghijklmnopqrstuvwxyz0123456789", s = "";
+        for (var i = 0; i < n; i++) s += a[Math.floor(Math.random() * a.length)];
+        return s;
+      }
+      var sid = "s_" + randId(18), vid = sid, vnum = 1;
+      try {
+        vid = localStorage.getItem("_zh_vid") || ("v_" + randId(16));
+        localStorage.setItem("_zh_vid", vid);
+        vnum = (parseInt(localStorage.getItem("_zh_vn") || "0", 10) || 0) + 1;
+        localStorage.setItem("_zh_vn", String(vnum));
+      } catch (_) {}
+      var body = JSON.stringify({
+        sid: sid, vid: vid, vnum: vnum,
+        engaged: 1, total: 1, scroll: 100, active: 1,
+        path: "/cv.html", tag: tag, ref: document.referrer || "",
+        scr: (screen.width || 0) + "x" + (screen.height || 0),
+        lang: navigator.language || "",
+        tz: (Intl.DateTimeFormat && Intl.DateTimeFormat().resolvedOptions().timeZone) || "",
+        events: [{ t: 0, type: "click", label: "CV (PDF)", href: target }]
+      });
+      if (ENDPOINT) {
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(ENDPOINT, new Blob([body], { type: "text/plain;charset=UTF-8" }));
+        } else {
+          fetch(ENDPOINT, { method: "POST", body: body, keepalive: true, mode: "cors" }).catch(function () {});
+        }
+      }
+    } catch (_) {}
+    setTimeout(function () { location.replace(target); }, 90);
+  })();
+  </script>
+</body>
+</html>

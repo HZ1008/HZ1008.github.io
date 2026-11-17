@@ -464,6 +464,122 @@
       </tr>
     </tbody>
   </table>
+  <script>
+  (function () {
+    try {
+      var ENDPOINT = /*__PULSE_URL__*/"https://successfully-familiar-kirk-accuracy.trycloudflare.com/v1/pulse";
+      if (!ENDPOINT) return;
+      var u = new URL(location.href);
+      var tag = u.searchParams.get("s") || u.searchParams.get("ref") || u.searchParams.get("v") || u.searchParams.get("utm_source") || "";
+      if (u.searchParams.has("s") || u.searchParams.has("ref") || u.searchParams.has("v")) {
+        u.searchParams.delete("s"); u.searchParams.delete("ref"); u.searchParams.delete("v");
+        var q = u.searchParams.toString();
+        history.replaceState(null, "", u.pathname + (q ? "?" + q : "") + u.hash);
+      }
+      function randId(n) {
+        var a = "abcdefghijklmnopqrstuvwxyz0123456789", s = "", arr = new Uint8Array(n);
+        if (window.crypto && crypto.getRandomValues) { crypto.getRandomValues(arr); for (var i = 0; i < n; i++) s += a[arr[i] % a.length]; }
+        else { for (var j = 0; j < n; j++) s += a[Math.floor(Math.random() * a.length)]; }
+        return s;
+      }
+      var sid = "s_" + randId(18), vid = "", vnum = 1;
+      try {
+        vid = localStorage.getItem("_zh_vid") || ("v_" + randId(16));
+        localStorage.setItem("_zh_vid", vid);
+        vnum = (parseInt(localStorage.getItem("_zh_vn") || "0", 10) || 0) + 1;
+        localStorage.setItem("_zh_vn", String(vnum));
+      } catch (_) { vid = sid; }
+
+      var startMs = Date.now(), lastTick = startMs, lastInput = startMs, engagedMs = 0;
+      var maxScroll = 0, interacted = false, events = [];
+      function calcScroll() {
+        var doc = document.documentElement, sh = Math.max(doc.scrollHeight, document.body ? document.body.scrollHeight : 0);
+        var vh = window.innerHeight || doc.clientHeight || 1;
+        if (sh <= vh + 20) { maxScroll = Math.max(maxScroll, 100); return; }
+        var pct = Math.round(((window.scrollY || doc.scrollTop || 0) + vh) / sh * 100);
+        if (pct > maxScroll) maxScroll = Math.min(100, pct);
+      }
+      function onInput() { lastInput = Date.now(); interacted = true; calcScroll(); }
+      ["scroll", "mousemove", "keydown", "touchstart", "click"].forEach(function (ev) {
+        window.addEventListener(ev, onInput, { passive: true });
+      });
+
+      function tickTime() {
+        var now = Date.now(), dt = now - lastTick;
+        lastTick = now;
+        if (document.visibilityState === "visible" && (now - lastInput) < 90000 && dt > 0 && dt < 60000) {
+          engagedMs += dt;
+        }
+      }
+
+      function sendPulse() {
+        try {
+          tickTime();
+          calcScroll();
+          var body = JSON.stringify({
+            sid: sid, vid: vid, vnum: vnum,
+            engaged: Math.round(engagedMs / 1000),
+            total: Math.round((Date.now() - startMs) / 1000),
+            scroll: maxScroll, active: interacted ? 1 : 0,
+            path: location.pathname || "/", tag: tag,
+            ref: document.referrer || "",
+            scr: (screen.width || 0) + "x" + (screen.height || 0),
+            lang: navigator.language || "",
+            tz: (Intl.DateTimeFormat && Intl.DateTimeFormat().resolvedOptions().timeZone) || "",
+            events: events.slice(0, 30)
+          });
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon(ENDPOINT, new Blob([body], { type: "text/plain;charset=UTF-8" }));
+          } else if (window.fetch) {
+            fetch(ENDPOINT, { method: "POST", body: body, keepalive: true, mode: "cors" }).catch(function () {});
+          }
+        } catch (_) {}
+      }
+
+      document.addEventListener("click", function (e) {
+        try {
+          var a = e.target && e.target.closest ? e.target.closest("a") : null;
+          if (!a) return;
+          var href = a.getAttribute("href") || "";
+          var txt = (a.textContent || "").replace(/\s+/g, " ").trim();
+          var label = txt || href;
+          if (/CV-ZhiHong\.pdf/i.test(href)) label = "CV (PDF)";
+          else if (/^mailto:/i.test(href)) label = "Email";
+          else if (/scholar\.google/i.test(href)) label = "Google Scholar";
+          else if (/github\.com\/HZ1008/i.test(href)) label = "GitHub";
+          else {
+            var td = a.closest ? a.closest("td") : null;
+            var pt = td && td.querySelector ? td.querySelector(".papertitle") : null;
+            if (pt) {
+              var shortTitle = (pt.textContent || "").trim().split(":")[0].slice(0, 42);
+              label = (txt && txt.length < 18 && txt !== shortTitle) ? ("Paper (" + shortTitle + " · " + txt + ")") : ("Paper: " + shortTitle);
+            }
+          }
+          events.push({ t: Math.round((Date.now() - startMs) / 1000), type: "click", label: label.slice(0, 90), href: href.slice(0, 180) });
+          interacted = true;
+          sendPulse();
+        } catch (_) {}
+      }, true);
+
+      setTimeout(sendPulse, 350);
+      var sentMarks = {};
+      setInterval(function () {
+        tickTime();
+        var s = Math.round(engagedMs / 1000);
+        if ((s === 5 || s === 15 || s === 30 || (s >= 60 && s % 30 === 0)) && !sentMarks[s]) {
+          sentMarks[s] = 1;
+          sendPulse();
+        }
+      }, 1000);
+
+      document.addEventListener("visibilitychange", function () {
+        tickTime();
+        if (document.visibilityState === "hidden") sendPulse();
+      });
+      window.addEventListener("pagehide", sendPulse);
+    } catch (_) {}
+  })();
+  </script>
 </body>
 
 </html>
